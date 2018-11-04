@@ -1,7 +1,9 @@
 package pl.dmcs.projektkompetencyjny.domain;
 
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class Quest {
 
     private String description;
