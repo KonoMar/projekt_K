@@ -2,10 +2,12 @@ package pl.dmcs.projektkompetencyjny;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import pl.dmcs.projektkompetencyjny.domain.Castle;
+import org.springframework.context.annotation.ImportResource;
+
+
 
 @SpringBootApplication
+@ImportResource("classpath:config/spring-config.xml")
 public class ProjektkompetencyjnyApplication {
 
 	public static void main(String[] args) {
