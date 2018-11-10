@@ -15,12 +15,19 @@
     <context:component-scan base-package="pl.dmcs"/>
 
     <import resource="classpath:config/castle-config.xml"/>
-    <bean id="quest" class="pl.dmcs.projektkompetencyjny.domain.Quest"/>
+    <bean id="quest" class="pl.dmcs.projektkompetencyjny.domain.Quest" scope="prototype"/>
 
-    <bean id="knight" class="pl.dmcs.projektkompetencyjny.domain.Knight">
+    <bean id="lancelot" class="pl.dmcs.projektkompetencyjny.domain.Knight" primary="true">
 
         <constructor-arg index="0" value="Lancelot"/>
         <constructor-arg index="1" value="29"/>
+        <property name="quest" ref="quest"/>
+
+    </bean>
+
+    <bean id="percival" class="pl.dmcs.projektkompetencyjny.domain.Knight" scope="prototype">
+        <constructor-arg index="0" value="Percival"/>
+        <constructor-arg index="1" value="25"/>
         <property name="quest" ref="quest"/>
 
     </bean>

@@ -14,9 +14,20 @@
 
     <context:property-placeholder location="classpath:castle.properties"/>
 
-    <bean id="zamek" class="pl.dmcs.projektkompetencyjny.domain.Castle">
-        <constructor-arg index="0" ref="knight"/>
+    <bean id="zamek" class="pl.dmcs.projektkompetencyjny.domain.Castle" init-method="build" destroy-method="tearDown">
+        <constructor-arg index="0" ref="lancelot"/>
         <property name="name" value="${my.castle.name:East Watch}"/>
+    </bean>
+
+    <bean id="turnament" class="pl.dmcs.projektkompetencyjny.domain.Knight$Tournament">
+        <property name="knights">
+            <map>
+                <entry key="lancelot" value-ref="lancelot"/>
+                <entry key="percival" value-ref="percival"/>
+            </map>
+        </property>
+
+
     </bean>
 
 </beans>

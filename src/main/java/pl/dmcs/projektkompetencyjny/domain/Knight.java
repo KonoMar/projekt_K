@@ -3,8 +3,10 @@ package pl.dmcs.projektkompetencyjny.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 
 public class Knight {
 
@@ -17,9 +19,24 @@ public class Knight {
 
     public Knight()
     {
+        this.name="Lanecelot";
+        this.age=29;
+
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Knight knight = (Knight) o;
+        return age == knight.age;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age);
+    }
 //
 //    public Knight(String name, int age, Quest quest) {
 //        this.name = name;
@@ -31,10 +48,17 @@ public class Knight {
         this.name = name;
         this.age = age;
     }
-
+    @Autowired
     public void setQuest(Quest quest) {
         System.out.println("Ustawiam zadanie dla rycerza");
         this.quest = quest;
+    }
+    public void setAge(int age){
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override
