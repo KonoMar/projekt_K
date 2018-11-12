@@ -27,10 +27,10 @@ public class Starter implements CommandLineRunner {
         questRepository.createRandomQuest();
         questRepository.createRandomQuest();
 
-        System.out.println(knightRepository);
-
-        questService.assignRandomQuest("Lancelot");
-        questService.assignRandomQuest("Percival");
+//        System.out.println(knightRepository);
+//
+//        questService.assignRandomQuest("Lancelot");
+//        questService.assignRandomQuest("Percival");
 
     }
 
