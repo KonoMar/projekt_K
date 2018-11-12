@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.dmcs.projektkompetencyjny.domain.Castle;
+import pl.dmcs.projektkompetencyjny.domain.repository.KnightRepository;
 import pl.dmcs.projektkompetencyjny.domain.Knight;
 
 import static junit.framework.TestCase.assertEquals;
@@ -18,7 +18,7 @@ public class ProjektkompetencyjnyApplicationTests {
 	Knight knight;
 
 	@Autowired
-	Castle castle;
+	KnightRepository castle;
 
 	@Test
 	public void contextLoads() {

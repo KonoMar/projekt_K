@@ -4,39 +4,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import pl.dmcs.projektkompetencyjny.domain.Castle;
-import pl.dmcs.projektkompetencyjny.domain.Tournament;
+import pl.dmcs.projektkompetencyjny.domain.repository.KnightRepository;
+import pl.dmcs.projektkompetencyjny.domain.repository.QuestRepository;
+import pl.dmcs.projektkompetencyjny.services.QuestService;
 
 @Component
 @Scope("singleton")
 public class Starter implements CommandLineRunner {
 
     @Autowired
-    Castle castle;
+    KnightRepository knightRepository;
 
     @Autowired
-    Tournament tournament;
+    QuestRepository questRepository;
 
+    @Autowired
+    QuestService questService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... strings) throws Exception {
 
-        System.out.println(castle);
-        tournament.duel();
-        System.out.println(tournament);
-        System.out.println(castle);
+        questRepository.createRandomQuest();
+        questRepository.createRandomQuest();
 
-//        Quest saveThePrincess = new Quest("Uratuj ksieżniczkę!");
-//
-//        Knight lancelot = new Knight("Lancelot",29,saveThePrincess);
-//
-//        System.out.println(lancelot);
-//
-//        Quest killTheDragon = new Quest("Zabij smoka!");
-//
-//        Knight pervival = new Knight("Percival",31);
-//        System.out.println(pervival);
-//        pervival.setQuest(killTheDragon);
-//        System.out.println(pervival);
+        System.out.println(knightRepository);
+
+        questService.assignRandomQuest("Lancelot");
+        questService.assignRandomQuest("Percival");
+
     }
+
 }
