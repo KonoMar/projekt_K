@@ -6,6 +6,7 @@ import pl.dmcs.projektkompetencyjny.domain.Knight;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
+import java.util.Optional;
 
 public class DBKnightRepository implements KnightRepository {
 
@@ -22,13 +23,13 @@ public class DBKnightRepository implements KnightRepository {
     }
 
     @Override
-    public Knight getKnight(String name) {
+    public Optional<Knight> getKnight(String name) {
         System.out.println("uzywam bazy danych");
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void deleteKnight(String name) {
+    public void deleteKnight(Integer id) {
         System.out.println("uzywam bazy danych");
         throw new UnsupportedOperationException();
     }
@@ -39,6 +40,12 @@ public class DBKnightRepository implements KnightRepository {
     }
     @Override
     public void createKnight(Knight knight) {
+        System.out.println("uzywam bazy danych");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
         System.out.println("uzywam bazy danych");
         throw new UnsupportedOperationException();
     }

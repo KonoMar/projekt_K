@@ -15,14 +15,16 @@
     <thread>
         <tr>
             <td>Imie rycerza</td>
-            <td>Wiek</td>
+            <td>Poziom</td>
         </tr>
     </thread>
 
     <tbody th:each="knight:${knights}">
         <tr>
             <td th:text="${knight.name}"></td>
-            <td th:text="${knight.age}"></td>
+            <td th:text="${knight.level}"></td>
+            <td><a th:href="${'/knight?id='+knight.id}">Podglad</a> </td>
+            <td><a th:href="${'/knight/delete/'+knight.id}">Usun</a> </td>
         </tr>
 
     </tbody>

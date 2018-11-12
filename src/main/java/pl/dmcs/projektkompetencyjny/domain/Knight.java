@@ -4,10 +4,15 @@ package pl.dmcs.projektkompetencyjny.domain;
 import java.util.Objects;
 public class Knight {
 
+    private int id;
+
+
 
     private String name;
 
     private int age;
+
+    private int level = 1;
 
     private Quest quest;
 
@@ -19,6 +24,7 @@ public class Knight {
     public Knight(String name, int age) {
           this.name = name;
           this.age = age;
+          this.level = 1;
     }
 
 
@@ -39,6 +45,22 @@ public class Knight {
     public void setQuest(Quest quest) {
         System.out.println("Ustawiam zadanie dla rycerza...");
         this.quest = quest;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getName() {
