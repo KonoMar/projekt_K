@@ -3,6 +3,7 @@ package pl.dmcs.projektkompetencyjny.domain.repository;
 import pl.dmcs.projektkompetencyjny.domain.Knight;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface KnightRepository {
 
@@ -10,9 +11,13 @@ public interface KnightRepository {
 
     Collection<Knight> getAllKnights();
 
-    Knight getKnight(String name);
+    Optional<Knight> getKnight(String name);
 
-    void deleteKnight(String name);
+    void deleteKnight(Integer id);
 
     void build();
+
+    void createKnight(Knight knight);
+
+    Knight getKnightById(Integer id);
 }
