@@ -1,26 +1,36 @@
 package pl.dmcs.projektkompetencyjny.domain;
 
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 public class Knight {
 
     private int id;
-
+    @NotNull
+    @Size(min=2, max=40,message = "Imię rycerza musi zawierać od 3 do 15 znaków!")
     private String name;
 
+    @NotNull
+    @Range(min=18, max=60, message = "Rycerz musi mieć co najmniej 18 lat, a nie więcej niż 60!")
     private int age;
+
     private int level;
     private Quest quest;
 
     public Knight() {
-
+        this.level = 1;
     }
 
 
     public Knight(String name, int age) {
-          this.name = name;
-          this.age = age;
-          this.level = 1;
+        this.name = name;
+        this.age = age;
+        this.level = 1;
     }
 
 

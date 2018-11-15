@@ -11,10 +11,13 @@
 
 </head>
 <body>
-<div class="container">
-    <p th:text="${knight.name}"></p>
-    <p th:text="${knight.age}"></p>
-    <p th:text="${knight.level}"></p>
-</div>
+    <div class="container">
+
+
+        Posiadane złoto <span th:text="${playerinformation.gold}"/>
+        <p th:text="${knight.name}"></p>
+        <p th:text="${knight.age}"></p>
+        <p th:text="${knight.level}"></p>
+    </div>
 </body>
 </html>
