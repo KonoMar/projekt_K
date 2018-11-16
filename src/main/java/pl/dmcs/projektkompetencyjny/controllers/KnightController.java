@@ -21,10 +21,10 @@ import java.util.List;
 public class KnightController {
 
     @Autowired
-    KnightService service;
+    PlayerInformation playerInformation;
 
     @Autowired
-    PlayerInformation playerInformation;
+    KnightService service;
 
     @RequestMapping("/knights")
     public String getKnights(Model model) {

@@ -1,13 +1,10 @@
 package pl.dmcs.projektkompetencyjny.domain;
 
-
 import org.hibernate.validator.constraints.Range;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
+
 public class Knight {
 
     private int id;
@@ -20,19 +17,18 @@ public class Knight {
     private int age;
 
     private int level;
+
     private Quest quest;
 
     public Knight() {
         this.level = 1;
     }
 
-
     public Knight(String name, int age) {
         this.name = name;
         this.age = age;
         this.level = 1;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -47,8 +43,17 @@ public class Knight {
         return Objects.hash(age);
     }
 
+    public void setQuest(Quest quest) {
 
+        if(quest!=null) {
+            quest.setStarted(true);
+        }
+        this.quest = quest;
+    }
 
+    public Quest getQuest() {
+        return quest;
+    }
 
     public void setAge(int age) {
         this.age = age;
@@ -56,15 +61,6 @@ public class Knight {
 
     public int getAge() {
         return this.age;
-    }
-
-    public Quest getQuest() {
-        return quest;
-    }
-
-    public void setQuest(Quest quest) {
-        quest.setStarted(true);
-        this.quest = quest;
     }
 
     public String getName() {
@@ -92,7 +88,7 @@ public class Knight {
     }
 
     @Override
-    public String toString(){
-        return "Rycerz o imieniu" + name + " ( " + age + " ). Wykonuje zadanie: " + quest;
+    public String toString() {
+        return "Rycerz o imieniu " + name + "(" + age + "). Ma za zadanie: " + quest;
     }
 }

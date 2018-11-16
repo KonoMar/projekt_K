@@ -1,20 +1,17 @@
 package pl.dmcs.projektkompetencyjny.domain;
 
 
+import java.time.LocalDateTime;
 
 public class Quest {
 
     private int id;
-
     private String description;
-
     private int reward = 100;
-
-    private int lenght = 30000;
-
+    protected int lenghtInSeconds = 10;
     private boolean started = false;
-
     private boolean completed = false;
+    protected LocalDateTime startDate;
 
     public Quest(int id, String description) {
         this.id = id;
@@ -34,36 +31,36 @@ public class Quest {
         this.description = description;
     }
 
-    public int getReward() {
-        return reward;
-    }
-
-    public void setReward(int reward) {
-        this.reward = reward;
-    }
-
-    public int getLenght() {
-        return lenght;
-    }
-
-    public void setLenght(int lenght) {
-        this.lenght = lenght;
-    }
-
     public boolean isStarted() {
         return started;
     }
 
     public void setStarted(boolean started) {
+
+        if (started) {
+            this.startDate = LocalDateTime.now();
+        }
+
         this.started = started;
     }
 
     public boolean isCompleted() {
-        return completed;
-    }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+        if (this.completed) {
+            return this.completed;
+        } else {
+            LocalDateTime now = LocalDateTime.now();
+
+            LocalDateTime questEndDate = this.startDate.plusSeconds(this.lenghtInSeconds);
+
+            boolean isAfter = now.isAfter(questEndDate);
+
+            if (isAfter) {
+                this.completed = true;
+            }
+
+            return isAfter;
+        }
     }
 
     public int getId() {
@@ -72,5 +69,9 @@ public class Quest {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getReward() {
+        return reward;
     }
 }
