@@ -4,6 +4,8 @@ package pl.dmcs.projektkompetencyjny.domain;
 
 public class Quest {
 
+    private int id;
+
     private String description;
 
     private int reward = 100;
@@ -12,7 +14,10 @@ public class Quest {
 
     private boolean started = false;
 
-    public Quest(String description)  {
+    private boolean completed = false;
+
+    public Quest(int id, String description) {
+        this.id = id;
         this.description = description;
     }
 
@@ -20,7 +25,6 @@ public class Quest {
     public String toString() {
         return description;
     }
-
 
     public String getDescription() {
         return description;
@@ -52,5 +56,21 @@ public class Quest {
 
     public void setStarted(boolean started) {
         this.started = started;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

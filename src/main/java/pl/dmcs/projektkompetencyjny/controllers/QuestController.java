@@ -3,7 +3,9 @@ package pl.dmcs.projektkompetencyjny.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.dmcs.projektkompetencyjny.domain.Knight;
 import pl.dmcs.projektkompetencyjny.domain.Quest;
@@ -30,4 +32,15 @@ public class QuestController {
         model.addAttribute("notStartedQuests", notStartedQuests);
         return "assignQuest";
     }
+
+    @RequestMapping(value = "/assignQuest", method = RequestMethod.POST)
+    public String assignQuest(Knight knight, BindingResult result) {
+        System.out.println(result);
+        knightService.updateKnight(knight);
+        Quest quest = knight.getQuest();
+        questService.update(quest);
+        return "redirect:/knights";
+    }
+
+
 }
