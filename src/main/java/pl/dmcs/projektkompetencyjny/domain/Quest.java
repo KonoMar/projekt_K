@@ -6,6 +6,12 @@ public class Quest {
 
     private String description;
 
+    private int reward = 100;
+
+    private int lenght = 30000;
+
+    private boolean started = false;
+
     public Quest(String description)  {
         this.description = description;
     }
@@ -13,5 +19,38 @@ public class Quest {
     @Override
     public String toString() {
         return description;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getReward() {
+        return reward;
+    }
+
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
+
+    public int getLenght() {
+        return lenght;
+    }
+
+    public void setLenght(int lenght) {
+        this.lenght = lenght;
+    }
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
     }
 }

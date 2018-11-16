@@ -66,7 +66,6 @@ public class KnightController {
 
     }
 
-
     @RequestMapping(value = "/knight/delete/{id}")
     public String deleteKnight(@PathVariable("id") Integer id) {
         service.deleteKnight(id);

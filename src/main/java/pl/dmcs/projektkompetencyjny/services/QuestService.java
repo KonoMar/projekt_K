@@ -8,6 +8,7 @@ import pl.dmcs.projektkompetencyjny.domain.repository.QuestRepository;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestService {
@@ -30,4 +31,12 @@ public class QuestService {
         questRepository.deleteQuest(randomQuest);
     }
 
+    public List<Quest> getAllNotStartedQuests() {
+       return questRepository.getAll().stream().filter(quest -> !quest.isStarted()).collect(Collectors.toList());
+    }
+
+    @Autowired
+    public void setQuestRepository(QuestRepository questRepository) {
+        this.questRepository = questRepository;
+    }
 }

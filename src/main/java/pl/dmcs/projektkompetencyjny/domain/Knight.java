@@ -48,10 +48,7 @@ public class Knight {
     }
 
 
-    public void setQuest(Quest quest) {
-        System.out.println("Ustawiam zadanie dla rycerza...");
-        this.quest = quest;
-    }
+
 
     public void setAge(int age) {
         this.age = age;
@@ -61,6 +58,14 @@ public class Knight {
         return this.age;
     }
 
+    public Quest getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Quest quest) {
+        quest.setStarted(true);
+        this.quest = quest;
+    }
 
     public String getName() {
         return name;
