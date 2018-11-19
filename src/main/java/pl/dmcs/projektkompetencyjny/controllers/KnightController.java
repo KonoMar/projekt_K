@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.dmcs.projektkompetencyjny.domain.Knight;
 import pl.dmcs.projektkompetencyjny.domain.PlayerInformation;
+import pl.dmcs.projektkompetencyjny.domain.repository.PlayerInformationRepository;
 import pl.dmcs.projektkompetencyjny.services.KnightService;
 
 import javax.validation.Valid;
@@ -21,7 +22,7 @@ import java.util.List;
 public class KnightController {
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @Autowired
     KnightService service;
@@ -29,6 +30,7 @@ public class KnightController {
     @RequestMapping("/knights")
     public String getKnights(Model model) {
         List<Knight> allKnights = service.getAllKnights();
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knights", allKnights);
         model.addAttribute("playerinformation", playerInformation);
         return "knights";
@@ -37,6 +39,7 @@ public class KnightController {
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model) {
         Knight knight = service.getKnight(id);
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knight", knight);
         model.addAttribute("playerinformation", playerInformation);
         return "knight";
@@ -45,6 +48,7 @@ public class KnightController {
     @RequestMapping("/newknight")
     public String createKnight(Model model) {
         model.addAttribute("knight", new Knight());
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("playerinformation", playerInformation);
         return "knightform";
     }

@@ -1,7 +1,7 @@
 package pl.dmcs.projektkompetencyjny.domain.repository;
 
 import pl.dmcs.projektkompetencyjny.domain.Knight;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.lang.UnsupportedOperationException;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -22,5 +22,5 @@ public interface KnightRepository {
 
     Knight getKnightById(Integer id);
 
-    default void updateKnight(int id, Knight knight) { throw new NotImplementedException(); }
+    default void updateKnight(int id, Knight knight) { throw new UnsupportedOperationException(); }
 }

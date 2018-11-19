@@ -5,7 +5,10 @@ import org.springframework.stereotype.Component;
 import pl.dmcs.projektkompetencyjny.domain.Knight;
 import pl.dmcs.projektkompetencyjny.domain.PlayerInformation;
 import pl.dmcs.projektkompetencyjny.domain.repository.KnightRepository;
+import pl.dmcs.projektkompetencyjny.domain.repository.PlayerInformationRepository;
+import pl.dmcs.projektkompetencyjny.domain.repository.QuestRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -15,8 +18,12 @@ public class KnightService {
 
     @Autowired
     KnightRepository knightRepository;
+
     @Autowired
-    PlayerInformation playerInformation;
+    QuestRepository questRepository;
+
+    @Autowired
+    PlayerInformationRepository playerInformation;
 
 
     public List<Knight> getAllKnights() { // metoda zwracająca wszystkich rycerzy
@@ -60,16 +67,23 @@ public class KnightService {
         return sum;
     }
 
+    @Transactional
     public void getMyGold() {
         List<Knight> allKnights = getAllKnights();
         allKnights.forEach(knight -> {
             if(knight.getQuest()!=null){
-                knight.getQuest().isCompleted();
+                boolean completed = knight.getQuest().isCompleted();
+
+                if(completed){
+                    questRepository.update(knight.getQuest());
+                }
             }
         });
 
-        int currentGold = playerInformation.getGold();
+        PlayerInformation first = playerInformation.getFirst();
+        int currentGold = first.getGold();
 
-        playerInformation.setGold(currentGold + collectRewards());
+        first.setGold(currentGold + collectRewards());
+
     }
 }

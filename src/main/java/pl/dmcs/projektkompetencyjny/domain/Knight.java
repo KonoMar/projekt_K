@@ -1,13 +1,19 @@
 package pl.dmcs.projektkompetencyjny.domain;
 
 import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
 public class Knight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @NotNull
     @Size(min=2, max=40,message = "Imię rycerza musi zawierać od 3 do 15 znaków!")
     private String name;
@@ -18,6 +24,7 @@ public class Knight {
 
     private int level;
 
+    @OneToOne
     private Quest quest;
 
     public Knight() {

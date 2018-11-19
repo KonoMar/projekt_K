@@ -6,41 +6,41 @@ import pl.dmcs.projektkompetencyjny.domain.Quest;
 import pl.dmcs.projektkompetencyjny.utils.Ids;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
 public class QuestRepository {
+
+    @PersistenceContext
+    private EntityManager em;
+
     Random rand = new Random();
 
-    Map<Integer,Quest> quests = new HashMap<>();
 
+    @Transactional
     public void createQuest(String description) {
-        int newId = Ids.generateNewId(quests.keySet());
-        Quest newQuest = new Quest(newId, description);
-        quests.put(newId, newQuest);
+
+        Quest newQuest = new Quest(description);
+
+        em.persist(newQuest);
+
     }
 
     public List<Quest> getAll() {
-        return  new ArrayList<>(quests.values());
+
+        return em.createQuery("from Quest", Quest.class).getResultList();
     }
 
+    @Transactional
     public void deleteQuest(Quest quest) {
-        quests.remove(quest.getId());
-    }
-
-    @PostConstruct
-    public void init() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "QuestRepository{" +
-                "quests=" + quests +
-                '}';
+        em.remove(quest);
     }
 
     @Scheduled(fixedDelayString  = "${questCreationDelay}")
+    @Transactional
     public void createRandomQuest() {
         List<String> descriptions = new ArrayList<>();
 
@@ -53,11 +53,13 @@ public class QuestRepository {
         createQuest(description);
     }
 
+    @Transactional
     public void update(Quest quest) {
-        quests.put(quest.getId(),quest);
+       em.merge(quest);
     }
 
+
     public Quest getQuest(Integer id) {
-        return quests.get(id);
+        return em.find(Quest.class, id);
     }
 }

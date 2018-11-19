@@ -11,6 +11,7 @@ import pl.dmcs.projektkompetencyjny.domain.Knight;
 import pl.dmcs.projektkompetencyjny.domain.PlayerInformation;
 import pl.dmcs.projektkompetencyjny.domain.Quest;
 
+import pl.dmcs.projektkompetencyjny.domain.repository.PlayerInformationRepository;
 import pl.dmcs.projektkompetencyjny.services.KnightService;
 import pl.dmcs.projektkompetencyjny.services.QuestService;
 
@@ -27,7 +28,7 @@ public class QuestController {
     QuestService questService;
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @RequestMapping("/assignQuest")
     public String assignQuest(@RequestParam("knightId") Integer id, Model model) {
