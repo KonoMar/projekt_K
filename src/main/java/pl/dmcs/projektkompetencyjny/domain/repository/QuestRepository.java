@@ -8,17 +8,19 @@ import pl.dmcs.projektkompetencyjny.utils.Ids;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.*;
 
 @Repository
 public class QuestRepository {
 
+
     @PersistenceContext
     private EntityManager em;
 
     Random rand = new Random();
-
 
     @Transactional
     public void createQuest(String description) {
@@ -39,7 +41,7 @@ public class QuestRepository {
         em.remove(quest);
     }
 
-    @Scheduled(fixedDelayString  = "${questCreationDelay}")
+    @Scheduled(fixedDelayString = "${questCreationDelay}")
     @Transactional
     public void createRandomQuest() {
         List<String> descriptions = new ArrayList<>();
@@ -55,9 +57,8 @@ public class QuestRepository {
 
     @Transactional
     public void update(Quest quest) {
-       em.merge(quest);
+        em.merge(quest);
     }
-
 
     public Quest getQuest(Integer id) {
         return em.find(Quest.class, id);

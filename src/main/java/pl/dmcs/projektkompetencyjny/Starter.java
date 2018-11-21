@@ -10,7 +10,7 @@ import pl.dmcs.projektkompetencyjny.domain.repository.PlayerInformationRepositor
 import pl.dmcs.projektkompetencyjny.domain.repository.QuestRepository;
 import pl.dmcs.projektkompetencyjny.services.QuestService;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Scope("singleton")
@@ -32,12 +32,15 @@ public class Starter implements CommandLineRunner {
     @Transactional
     public void run(String... strings) throws Exception {
 
-        knightRepository.createKnight("Percival", 32);
+        questRepository.createRandomQuest();
+        questRepository.createRandomQuest();
 
+        knightRepository.createKnight("Percival", 32);
 
         playerInformationRepository.createPlayerInformation(new PlayerInformation());
 
         questService.assignRandomQuest("Percival");
+
     }
 
 }
