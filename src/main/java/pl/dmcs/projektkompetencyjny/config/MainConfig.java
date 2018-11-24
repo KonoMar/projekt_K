@@ -2,6 +2,8 @@ package pl.dmcs.projektkompetencyjny.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import pl.dmcs.projektkompetencyjny.domain.Knight;
 import pl.dmcs.projektkompetencyjny.domain.Quest;
 import pl.dmcs.projektkompetencyjny.domain.repository.DBKnightRepository;
@@ -25,4 +27,5 @@ public class MainConfig {
         KnightRepository repo = new DBKnightRepository();
         return repo;
     }
+
 }
