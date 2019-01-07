@@ -40,7 +40,7 @@ public class Starter implements CommandLineRunner {
         playerInformationRepository.createPlayerInformation(new PlayerInformation());
 
         questService.assignRandomQuest("Percival");
-lololol
+
     }
 
 }
