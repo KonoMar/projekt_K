@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org",lang="pl" >
 <head>
+    <iframe height="0px" th:width="0px" src="https://www.youtube.com/embed/m9tdKwdxnj0?autoplay=1" frameborder="0"  allow=" autoplay"></iframe></p>
     <title>Knight list</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,7 +19,7 @@
 
 <div class="container">
 
-    Posiadane zloto <span th:text="${playerinformation.gold}"/>
+    Doświadczenie: <span th:text="${playerinformation.gold}"/>
     <a th:href="${'/checkQuests'}">Aktualizuj zadania </a>
 
 
@@ -49,8 +50,8 @@
         <a href="/newknight">ZREKRUTUJ NOWEGO RYCERZA!</a>
     </div>
     <div class="row">
-        <form action="#" th:action="@{/logout}" method="post">
-            <input type="submit" value="Logout" />
+        <form class="form-horizontal" action="#" th:action="@{/logout}" method="post">
+            <input  class="btn btn-default" type="submit" value="Logout" />
         </form>
     </div>
 </div>

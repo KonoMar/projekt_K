@@ -32,14 +32,12 @@ public class Starter implements CommandLineRunner {
     @Transactional
     public void run(String... strings) throws Exception {
 
-        questRepository.createRandomQuest();
-        questRepository.createRandomQuest();
+
 
         knightRepository.createKnight("Percival", 32);
 
         playerInformationRepository.createPlayerInformation(new PlayerInformation());
 
-        questService.assignRandomQuest("Percival");
 
     }
 

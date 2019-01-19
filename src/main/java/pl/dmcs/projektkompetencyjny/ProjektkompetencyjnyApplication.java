@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication
-//@ImportResource("classpath:config/spring-config.xml")
+@ImportResource("classpath:config/spring-config.xml")
 @EnableScheduling
 public class ProjektkompetencyjnyApplication {
 
